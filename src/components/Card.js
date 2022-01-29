@@ -9,8 +9,8 @@ class Card extends React.Component {
       cardAttr2,
       cardAttr3,
       cardImage,
-      cardTrunfo,
       cardRare,
+      cardTrunfo,
     } = this.props;
     return (
       <>
@@ -22,7 +22,7 @@ class Card extends React.Component {
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="rare-card">{ cardRare }</p>
         {
-          cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : <p />
+          cardTrunfo ? <p data-testid="trunfo-card" name="trunfo">Super Trunfo</p> : <p />
         }
       </>
     );
@@ -40,4 +40,5 @@ Card.propTypes = {
   cardRare: string.isRequired,
   cardTrunfo: bool.isRequired,
 };
+
 export default Card;
