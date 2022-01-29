@@ -60,7 +60,8 @@ class App extends React.Component {
           cardAttr3={ attr3 }
           cardImage={ image }
           cardRare={ rare }
-          cardTrunfo={ trunfo }/>
+          cardTrunfo={ trunfo }
+        />
       </div>
     );
   }
