@@ -20,29 +20,47 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeOnClick = this.handleChangeOnClick.bind(this);
+    this.verifyInput = this.verifyInput.bind(this);
   }
 
   handleChange({ target }) {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({ [name]: value });
-    // const somaAllAttr = 210;
-    const maxEachAttr = 90;
-    if (value === null
-      || value === undefined
-      || value === ''
-      || (target.type === 'number' && value >= maxEachAttr) // os atributos sao do tipo number
-      || (target.type === 'number' && value < 0) // os atributos sao do tipo number
-      || (target.type === 'number' && target.name) // os atributos sao do tipo number
-    ) {
-      this.setState({ isSaveButtonDisabled: true });
-    } else {
-      return this.setState({ isSaveButtonDisabled: false });
-    }
+    this.setState({ [name]: value }, () => this.verifyInput());
   }
 
   handleChangeOnClick(event) {
     event.preventDefault();
+  }
+
+  verifyInput() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+    const somaAllAttr = 210;
+    const maxEachAttr = 90;
+    const somaCardAttr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+
+    if (cardName.length !== 0
+      && cardDescription.length !== 0
+      && cardRare.length !== 0
+      && cardImage.length !== 0
+      && (somaCardAttr <= somaAllAttr)
+      && (Number(cardAttr1) >= 0 && Number(cardAttr1) <= maxEachAttr)
+      && (Number(cardAttr2) >= 0 && Number(cardAttr2) <= maxEachAttr)
+      && (Number(cardAttr3) >= 0 && Number(cardAttr3) <= maxEachAttr)
+
+    ) {
+      this.setState({ isSaveButtonDisabled: false });
+    } else {
+      return this.setState({ isSaveButtonDisabled: true });
+    }
   }
 
   render() {
