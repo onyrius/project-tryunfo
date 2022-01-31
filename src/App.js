@@ -7,7 +7,6 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      form: { ...this.state },
       saveNewCards: [],
       cardName: '',
       cardDescription: '',
@@ -38,10 +37,32 @@ class App extends React.Component {
 
   handleChangeOnClick(event) {
     event.preventDefault();
-    const { form } = this.state;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+
+    } = this.state;
+    const newCard = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+    };
     this.setState((prevState) => ({
-      saveNewCards: [...prevState.saveNewCards, form] }), () => this.clearState());
-  }
+      saveNewCards: [...prevState.saveNewCards, newCard] }), () => this.clearState());
+  } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
 
  clearState = () => {
    const initialState = {
