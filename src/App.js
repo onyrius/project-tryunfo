@@ -15,8 +15,8 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardRare: 'normal',
-      // hasTrunfo: '',
       cardTrunfo: false,
+      hasTrunfo: false,
       isSaveButtonDisabled: true,
 
     };
@@ -60,7 +60,11 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
     };
+    let { hasTrunfo } = this.state;
+    if (cardTrunfo) hasTrunfo = true;
+
     this.setState((prevState) => ({
+      hasTrunfo,
       saveNewCards: [...prevState.saveNewCards, newCard] }), () => this.clearState());
   } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
 
@@ -119,6 +123,7 @@ class App extends React.Component {
      cardImage,
      cardRare,
      cardTrunfo,
+     hasTrunfo,
      isSaveButtonDisabled,
    } = this.state;
    return (
@@ -136,6 +141,7 @@ class App extends React.Component {
          cardImage={ cardImage }
          cardRare={ cardRare }
          cardTrunfo={ cardTrunfo }
+         hasTrunfo={ hasTrunfo }
        />
        <Card
          cardName={ cardName }
