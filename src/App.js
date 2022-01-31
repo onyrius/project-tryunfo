@@ -18,7 +18,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
 
     };
-    
+
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeOnClick = this.handleChangeOnClick.bind(this);
     this.verifyInput = this.verifyInput.bind(this);
