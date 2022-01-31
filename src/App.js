@@ -7,6 +7,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      form: { ...this.state },
+      saveNewCards: [],
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -14,6 +16,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardRare: 'normal',
+      // hasTrunfo: '',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
 
@@ -35,13 +38,10 @@ class App extends React.Component {
 
   handleChangeOnClick(event) {
     event.preventDefault();
-    /*  const newCards = [];
-    let oneNewCard = {};
-    if (this.verifyInput()) {
-      oneNewCard = { ...this.state };
-      Object.assign(newCards, oneNewCard); */
-    this.clearState();
-  } // duvida: o que è para fazer nessa funçao? nao foi salvo nada e passou nos testes!
+    const { form } = this.state;
+    this.setState((prevState) => ({
+      saveNewCards: [...prevState.saveNewCards, form] }), () => this.clearState());
+  }
 
  clearState = () => {
    const initialState = {
