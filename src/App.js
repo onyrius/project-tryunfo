@@ -19,7 +19,6 @@ class App extends React.Component {
 
     };
     this.handleChange = this.handleChange.bind(this);
-    this.verifyInputs = this.verifyInputs.bind(this);
     this.handleChangeOnClick = this.handleChangeOnClick.bind(this);
   }
 
@@ -27,29 +26,23 @@ class App extends React.Component {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
-    if (value === null || value === undefined || value === '') {
+    // const somaAllAttr = 210;
+    const maxEachAttr = 90;
+    if (value === null
+      || value === undefined
+      || value === ''
+      || (target.type === 'number' && value >= maxEachAttr) // os atributos sao do tipo number
+      || (target.type === 'number' && value < 0) // os atributos sao do tipo number
+      || (target.type === 'number' && target.name) // os atributos sao do tipo number
+    ) {
       this.setState({ isSaveButtonDisabled: true });
     } else {
-      this.setState({ isSaveButtonDisabled: false });
+      return this.setState({ isSaveButtonDisabled: false });
     }
   }
 
   handleChangeOnClick(event) {
     event.preventDefault();
-  }
-
-  verifyInputs() {
-    const {
-      cardName,
-    /*   cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      isSaveButtonDisabled, */
-    } = this.state;
-    if (cardName.length !== 0) this.setState({ isSaveButtonDisabled: false });
   }
 
   render() {
