@@ -6,15 +6,85 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+h1 {
+  align-self: center;
+}
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
+  width: 40%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form-input {
+  width:50%;
+  padding: 5%;
+}
+
+.form-atr {
+  display: flex;
+  flex-direction: row;
+  padding: 5%;
+  background-color: rgb(228, 246, 247);
+}
+
+.atr-input {
+  width: 22px;
+  background-color: rgb(238, 246, 247);
+}
+
+.form-image{
+  width: 35%;
+  padding: 10%;
+}
+
+button {
+  border-radius: 3px;
+  background-color: cadetblue;
+  align-self: center;
+  width: 20%;
+}
+
+.card {
+  border-style: solid;
+  border-color: cadetblue;
+  width: 40%;
+}
+
+ul {
+  display: flex;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 6%;
+  border-color: cadetblue;
+  border: solid cadetblue 1px;
+  border-radius: 5px;
+  height: 20%;
+}
+
+.h3-do-Card {
+  padding-top: 26,06%;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
 }

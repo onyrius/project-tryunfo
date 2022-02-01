@@ -124,35 +124,63 @@ class App extends React.Component {
      cardRare,
      cardTrunfo,
      hasTrunfo,
+     saveNewCards,
      isSaveButtonDisabled,
    } = this.state;
+
    return (
      <div>
        <h1>Tryunfo</h1>
-       <Form
-         onInputChange={ this.handleChange }
-         onSaveButtonClick={ this.handleChangeOnClick }
-         isSaveButtonDisabled={ isSaveButtonDisabled }
-         cardName={ cardName }
-         cardDescription={ cardDescription }
-         cardAttr1={ cardAttr1 }
-         cardAttr2={ cardAttr2 }
-         cardAttr3={ cardAttr3 }
-         cardImage={ cardImage }
-         cardRare={ cardRare }
-         cardTrunfo={ cardTrunfo }
-         hasTrunfo={ hasTrunfo }
-       />
-       <Card
-         cardName={ cardName }
-         cardDescription={ cardDescription }
-         cardAttr1={ cardAttr1 }
-         cardAttr2={ cardAttr2 }
-         cardAttr3={ cardAttr3 }
-         cardImage={ cardImage }
-         cardRare={ cardRare }
-         cardTrunfo={ cardTrunfo }
-       />
+       <div className="form-container">
+         <Form
+           onInputChange={ this.handleChange }
+           onSaveButtonClick={ this.handleChangeOnClick }
+           isSaveButtonDisabled={ isSaveButtonDisabled }
+           cardName={ cardName }
+           cardDescription={ cardDescription }
+           cardAttr1={ cardAttr1 }
+           cardAttr2={ cardAttr2 }
+           cardAttr3={ cardAttr3 }
+           cardImage={ cardImage }
+           cardRare={ cardRare }
+           cardTrunfo={ cardTrunfo }
+           hasTrunfo={ hasTrunfo }
+         />
+
+         <div className="card">
+           <h3 className="h3-do-Card">Visualizaçao</h3>
+           <Card
+             cardName={ cardName }
+             cardDescription={ cardDescription }
+             cardAttr1={ cardAttr1 }
+             cardAttr2={ cardAttr2 }
+             cardAttr3={ cardAttr3 }
+             cardImage={ cardImage }
+             cardRare={ cardRare }
+             cardTrunfo={ cardTrunfo }
+           />
+         </div>
+       </div>
+       <div className="render-newcards">
+         <h3> Minhas Cartas</h3>
+         <div>
+           {
+             saveNewCards.map((card, index) => (
+               <Card
+                 key={ index }
+                 cardName={ card.cardName }
+                 cardDescription={ card.cardDescription }
+                 cardAttr1={ card.cardAttr1 }
+                 cardAttr2={ card.cardAttr2 }
+                 cardAttr3={ card.cardAttr3 }
+                 cardImage={ card.cardImage }
+                 cardRare={ card.cardRare }
+                 cardTrunfo={ card.cardTrunfo }
+               />))
+           }
+
+         </div>
+       </div>
      </div>
    );
  }
