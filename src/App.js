@@ -64,10 +64,15 @@ class App extends React.Component {
       isSaveButtonDisabled,
     };
     let { hasTrunfo } = this.state;
-    if (cardTrunfo) hasTrunfo = true;
+    if (cardTrunfo) {
+      hasTrunfo = true;
+    } else {
+      hasTrunfo = false;
+    }
+
     let { buttonDelete } = this.state;
     if (event) buttonDelete = true;
-
+    console.log('handleChangeOnClick foi ativado');
     this.setState((prevState) => ({
       buttonDelete,
       hasTrunfo,
@@ -91,22 +96,13 @@ class App extends React.Component {
    this.setState({ ...initialState });
  };
 
- clearStateHasTrunfo = () => {
-   const initialState = {
-     cardName: '',
-     cardDescription: '',
-     cardImage: '',
-     cardAttr1: '0',
-     cardAttr2: '0',
-     cardAttr3: '0',
-     cardRare: 'normal',
-     cardTrunfo: false,
-     hasTrunfo: false,
-     isSaveButtonDisabled: true,
-   };
-   this.setState({ ...initialState });
+ // verificar bug clearStatehasTrunfo && deleteMycards
+ clearStateHasTrunfo = (valueCard) => {
+   this.setState((previousState) => (
+     { hasTrunfo: valueCard === 'true' ? false : previousState.hasTrunfo }));
  };
 
+ // verifica os inputs para ativar o botao salvar.
  verifyInput() {
    const {
      cardName,
@@ -137,20 +133,28 @@ class App extends React.Component {
    }
  }
 
+ // deleta as cartas salvas
  deleteMyCards({ target }) {
    const { id, value } = target;
+
    console.log('esse è o meu id', id);
    console.log('esse è o meu value', value);
-
+   console.log('deleteMyCards foi ativado');
    const { saveNewCards } = this.state;
-   //  console.log('sou o saveNewCards', saveNewCards);
+   console.log('sou o saveNewCards', saveNewCards);
 
    const myRemaingCards = saveNewCards.filter((card) => card.cardName !== id);
-   //  console.log('minhas cartas remanescentes', myRemaingCards);
-
+   console.log('minhas cartas remanescentes', myRemaingCards);
+   //  let { hasTrunfo } = this.state;
+   // valor true significa que è trunfo
+   /* if (value === true) {
+     hasTrunfo = false;
+   } else {
+     hasTrunfo = true;
+   } */
    this.setState({
      saveNewCards: [...myRemaingCards],
-   }, this.clearStateHasTrunfo());
+   }, () => this.clearStateHasTrunfo(value));
  }
 
  /** Source https://stackoverflow.com/questions/60990058/delete-a-div-onclick-in-react */
@@ -169,7 +173,7 @@ class App extends React.Component {
      buttonDelete,
      isSaveButtonDisabled,
    } = this.state;
-   // console.log('sou o hastrunfo dentro do render', hasTrunfo);
+   console.log('sou o hastrunfo dentro do render', hasTrunfo);
    return (
      <div className="container-total">
        <h1>Spirito diVino</h1>
