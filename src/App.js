@@ -17,6 +17,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
+      buttonDelete: false,
       isSaveButtonDisabled: true,
 
     };
@@ -25,6 +26,7 @@ class App extends React.Component {
     this.handleChangeOnClick = this.handleChangeOnClick.bind(this);
     this.verifyInput = this.verifyInput.bind(this);
     this.clearState = this.clearState.bind(this);
+    this.deleteMyCards = this.deleteMyCards.bind(this);
   }
 
   handleChange({ target }) {
@@ -62,10 +64,15 @@ class App extends React.Component {
     };
     let { hasTrunfo } = this.state;
     if (cardTrunfo) hasTrunfo = true;
+    let { buttonDelete } = this.state;
+    if (event) buttonDelete = true;
 
     this.setState((prevState) => ({
+      buttonDelete,
       hasTrunfo,
-      saveNewCards: [...prevState.saveNewCards, newCard] }), () => this.clearState());
+      saveNewCards: [...prevState.saveNewCards, newCard] }), () => {
+      this.clearState();
+    });
   } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
 
  clearState = () => {
@@ -78,6 +85,7 @@ class App extends React.Component {
      cardAttr3: '0',
      cardRare: 'normal',
      cardTrunfo: false,
+     hasTrunfo: false,
      isSaveButtonDisabled: true,
    };
    this.setState({ ...initialState });
@@ -113,6 +121,28 @@ class App extends React.Component {
    }
  }
 
+ deleteMyCards({ target }) {
+   const { id, value } = target;
+   console.log('esse è o meu id', id);
+   console.log('esse è o meu value', value);
+
+   const { saveNewCards } = this.state;
+   console.log('sou o saveNewCards', saveNewCards);
+
+   let { hasTrunfo } = this.state;
+   if (value === true) hasTrunfo = true;
+   console.log('sou o hastrunfo', hasTrunfo);
+
+   const myRemaingCards = saveNewCards.filter((card) => card.cardName !== id);
+   console.log('minhas cartas remanescentes', myRemaingCards);
+
+   this.setState({
+     hasTrunfo,
+     saveNewCards: [...myRemaingCards],
+   }, () => this.clearState());
+ }
+
+ /** Source https://stackoverflow.com/questions/60990058/delete-a-div-onclick-in-react */
  render() {
    const {
      cardName,
@@ -125,12 +155,13 @@ class App extends React.Component {
      cardTrunfo,
      hasTrunfo,
      saveNewCards,
+     buttonDelete,
      isSaveButtonDisabled,
    } = this.state;
-
+   // console.log('sou o hastrunfo dentro do render', hasTrunfo);
    return (
-     <div>
-       <h1>Tryunfo</h1>
+     <div className="container-total">
+       <h1>Spirito diVino</h1>
        <div className="form-container">
          <Form
            onInputChange={ this.handleChange }
@@ -161,13 +192,12 @@ class App extends React.Component {
            />
          </div>
        </div>
-       <div className="render-newcards">
-         <h3> Minhas Cartas</h3>
-         <div>
-           {
-             saveNewCards.map((card, index) => (
+       <h3 className=".minhas-cartastitle"> Minhas Cartas</h3>
+       <div className="render-newcards" id="divToErase">
+         {
+           saveNewCards.map((card, index) => (
+             <div key={ index } className="new-card">
                <Card
-                 key={ index }
                  cardName={ card.cardName }
                  cardDescription={ card.cardDescription }
                  cardAttr1={ card.cardAttr1 }
@@ -176,10 +206,13 @@ class App extends React.Component {
                  cardImage={ card.cardImage }
                  cardRare={ card.cardRare }
                  cardTrunfo={ card.cardTrunfo }
-               />))
-           }
+                 buttonDelete={ buttonDelete }
+                 deleteMyCards={ this.deleteMyCards }
+               />
+             </div>
+           ))
+         }
 
-         </div>
        </div>
      </div>
    );

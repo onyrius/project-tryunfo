@@ -17,6 +17,7 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+    // console.log('sou o hasTrunfo dentro do Form', hasTrunfo);
     return (
       <form>
         <h3>Insira sua carta</h3>
