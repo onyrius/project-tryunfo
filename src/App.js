@@ -27,6 +27,7 @@ class App extends React.Component {
     this.verifyInput = this.verifyInput.bind(this);
     this.clearState = this.clearState.bind(this);
     this.deleteMyCards = this.deleteMyCards.bind(this);
+    this.clearStateHasTrunfo = this.clearStateHasTrunfo.bind(this);
   }
 
   handleChange({ target }) {
@@ -85,6 +86,21 @@ class App extends React.Component {
      cardAttr3: '0',
      cardRare: 'normal',
      cardTrunfo: false,
+     isSaveButtonDisabled: true,
+   };
+   this.setState({ ...initialState });
+ };
+
+ clearStateHasTrunfo = () => {
+   const initialState = {
+     cardName: '',
+     cardDescription: '',
+     cardImage: '',
+     cardAttr1: '0',
+     cardAttr2: '0',
+     cardAttr3: '0',
+     cardRare: 'normal',
+     cardTrunfo: false,
      hasTrunfo: false,
      isSaveButtonDisabled: true,
    };
@@ -127,19 +143,14 @@ class App extends React.Component {
    console.log('esse è o meu value', value);
 
    const { saveNewCards } = this.state;
-   console.log('sou o saveNewCards', saveNewCards);
-
-   let { hasTrunfo } = this.state;
-   if (value === true) hasTrunfo = true;
-   console.log('sou o hastrunfo', hasTrunfo);
+   //  console.log('sou o saveNewCards', saveNewCards);
 
    const myRemaingCards = saveNewCards.filter((card) => card.cardName !== id);
-   console.log('minhas cartas remanescentes', myRemaingCards);
+   //  console.log('minhas cartas remanescentes', myRemaingCards);
 
    this.setState({
-     hasTrunfo,
      saveNewCards: [...myRemaingCards],
-   }, () => this.clearState());
+   }, this.clearStateHasTrunfo());
  }
 
  /** Source https://stackoverflow.com/questions/60990058/delete-a-div-onclick-in-react */
