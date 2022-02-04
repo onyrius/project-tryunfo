@@ -1,0 +1,149 @@
+[33mcommit a47c1ba51cc2970749499faaae2b6cd7e1eb0e81[m[33m ([m[1;36mHEAD -> [m[1;32msuelen-arruda-project-tryunfo[m[33m, [m[1;31morigin/suelen-arruda-project-tryunfo[m[33m)[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Thu Feb 3 00:04:39 2022 +0100
+
+    corrige o bug na hora de deletar redenderizar o botao SuperTrunfo
+
+[33mcommit a3998f0fd541e11bd084886a3fa6f1aeed91b136[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Wed Feb 2 16:37:04 2022 +0100
+
+    ajustando a logica da 9 para nao quebrar o requisito 7
+
+[33mcommit 14f65ceb704285c99967550a9922b02a20162f36[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Wed Feb 2 15:54:43 2022 +0100
+
+    requisito 9
+
+[33mcommit ca6765d0d080d0c368ffa020b516b7f9d7c34455[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Tue Feb 1 17:26:27 2022 +0100
+
+    requisito 8
+
+[33mcommit b5947e0297655e2bc3c00a21bc1eb4b2ab8ee077[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Tue Feb 1 00:08:51 2022 +0100
+
+    requisito numero 7 com a ajuda do Leo Oliveira  e do Cestari
+
+[33mcommit a13a88924572a8f2168a67cb848c3f3384654bcb[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 22:13:00 2022 +0100
+
+    consertando a funçao de savar handleChangeOnClick porque a ultima nao salvava nada
+
+[33mcommit 0476758bba6b7b8d8603132f708b3783bd386cea[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 21:50:48 2022 +0100
+
+    adicionando logica para salvar as cartas novas
+
+[33mcommit 532e35135d26679c87b7acb30e744d92f567fcd7[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 17:30:04 2022 +0100
+
+    RESOLVENDO LINT. requisito 6. Mas com duvidas sobre a funçao implementada que nao sava nada, mas que cumpre com todos os requisitos do teste.
+
+[33mcommit b15fa43ba130f800e7e623e761b7e30d27bd852c[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 17:18:51 2022 +0100
+
+    requisito 6. Mas com duvidas sobre a funçao implementada que nao sava nada, mas que cumpre com todos os requisitos do teste.
+
+[33mcommit 67fc015d30e4d4c733ca46ec336439c679ea46b4[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 15:18:53 2022 +0100
+
+    refazendo a logica do numero 5 , implementando uma funçao que verifica os inputs e è chamada como callBack no setState da HandleChange
+
+[33mcommit ee71f72173c1b7e916200182165e6d145621c16c[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 12:58:26 2022 +0100
+
+    requisito 5
+
+[33mcommit 33bfd88ccfd6a0307e1c4db4436380e4f1008356[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Mon Jan 31 10:15:52 2022 +0100
+
+    add logica de verificaçao dos valores vazios na funçao handleChange
+
+[33mcommit ed1527c4fb3793e2a72983b0c63ccea4a2680d74[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Sat Jan 29 21:35:04 2022 +0100
+
+     add requisito 4 e alteraçoes no arquivo Form
+
+[33mcommit 3965fe1b677e2c2886b19db62da1d12617ca3544[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Sat Jan 29 21:27:08 2022 +0100
+
+    requisito 4
+
+[33mcommit 3f4958a522cfcd247813382e3f98b0962a28ebd7[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Sat Jan 29 21:24:38 2022 +0100
+
+    requisito 4
+
+[33mcommit 2d5d2bc6e0db165cdfb42fb3ba78053ae2f63859[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Fri Jan 28 21:20:54 2022 +0100
+
+    requisito numero 3
+
+[33mcommit 5334bcca545f265726dacf2e914dcdde4017ee4a[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Fri Jan 28 20:26:54 2022 +0100
+
+    requisito numero 2
+
+[33mcommit c5a4dc84bbb3e160d737c91d5db12d9679c2df4c[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Fri Jan 28 20:03:25 2022 +0100
+
+    requisito 1
+
+[33mcommit cf4f5fb310d2b82e246ae32f0545c674694a7022[m
+Author: Suelen Arruda <suelenonyrius@gmail.com>
+Date:   Fri Jan 28 18:51:31 2022 +0100
+
+    começando o projeto :rocket:
+
+[33mcommit d95b6416fa285895d161c807181da5fe63de446a[m[33m ([m[1;31morigin/paolo-fullone-tryunfo[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/gisely-cavalli-tryunfo[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Eduardo dos Santos Flores <62265259+EduardoSantosF@users.noreply.github.com>
+Date:   Fri Jan 28 11:10:17 2022 -0300
+
+    Update README.md
+
+[33mcommit b034276897122b07699344a233730bb1faed7c75[m
+Author: Roberto Cestari <robertotcestari@gmail.com>
+Date:   Thu Jan 27 19:12:33 2022 -0300
+
+    Update .eslintrc.json
+
+[33mcommit 9577db81052590e2e06a0406f5ddea6d58b1fd9a[m
+Author: Daniel Farias <danielfariias15@gmail.com>
+Date:   Thu Jan 27 11:39:44 2022 -0300
+
+    Update README.md
+
+[33mcommit 97fd9a19be370d1b321b9969d3484b1b76e618f7[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Thu Jan 27 11:36:10 2022 -0300
+
+    Updating .github/workflows/main.yml
+
+[33mcommit 2520cb351648cae31100a643e71c475fd62a3052[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Thu Jan 27 11:36:09 2022 -0300
+
+    Updating README.md
+
+[33mcommit 6617c6cff839d11222890578c778612aea77688d[m
+Author: Jean Paulo Silva Vasconcelos <jean.vasconcelos6@gmail.com>
+Date:   Thu Jan 27 11:36:04 2022 -0300
+
+    Initial commit

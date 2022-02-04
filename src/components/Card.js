@@ -52,7 +52,10 @@ class Card extends React.Component {
             ? (
               <button
                 id={ cardName }
-                value={ cardTrunfo }
+                value={ cardTrunfo } // atribuindo o valor do hastrunfo ao botao delete para facilitar a captura do dado.
+                /** Source "Definindo um valor inicial ao botão:Value
+                O elemento <button> pode conter um valor inicial prédeterminado para ser acessado programaticamente. Para isso, basta definir o conteúdo desejado no atributo value ao declarar a tag em um formulário. "
+                https://blog.betrybe.com/html/button-html/ */
                 name="delete"
                 type="button"
                 data-testid="delete-button"

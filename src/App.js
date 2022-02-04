@@ -1,13 +1,18 @@
+/* eslint-disable max-lines */
 import React from 'react';
 import './index.css';
 import Form from './components/Form';
 import Card from './components/Card';
+import Filters from './components/Filters';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       saveNewCards: [],
+      cardsFilterName: [],
+      cardsFilterRare: [],
+      cardsFilterTrunfo: [],
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -19,7 +24,8 @@ class App extends React.Component {
       hasTrunfo: false,
       buttonDelete: false,
       isSaveButtonDisabled: true,
-
+      isFiltered: false,
+      valueCardName: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,6 +34,8 @@ class App extends React.Component {
     this.clearState = this.clearState.bind(this);
     this.deleteMyCards = this.deleteMyCards.bind(this);
     this.clearStateHasTrunfo = this.clearStateHasTrunfo.bind(this);
+    this.onInputFilterName = this.onInputFilterName.bind(this);
+    this.filteredRender = this.filteredRender.bind(this);
   }
 
   handleChange({ target }) {
@@ -40,13 +48,7 @@ class App extends React.Component {
 
   handleChangeOnClick(event) {
     event.preventDefault();
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
+    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
@@ -72,7 +74,6 @@ class App extends React.Component {
 
     let { buttonDelete } = this.state;
     if (event) buttonDelete = true;
-    console.log('handleChangeOnClick foi ativado');
     this.setState((prevState) => ({
       buttonDelete,
       hasTrunfo,
@@ -80,6 +81,26 @@ class App extends React.Component {
       this.clearState();
     });
   } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
+
+  onInputFilterName({ target }) {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    let { cardsFilterName,
+      cardsFilterRare, cardsFilterTrunfo, valueCardName } = this.state;
+    const { saveNewCards } = this.state;
+    valueCardName = value;
+    cardsFilterName = saveNewCards
+      .filter((cardFiltered) => cardFiltered.cardName === valueCardName);
+    cardsFilterRare = saveNewCards
+      .filter((cardFiltered) => cardFiltered.cardRare === value);
+    cardsFilterTrunfo = saveNewCards
+      .filter((cardFiltered) => cardFiltered.cardTrunfo === true
+      && target.type === 'checkbox');
+    this.setState({
+      valueCardName,
+      cardsFilterName,
+      cardsFilterRare,
+      cardsFilterTrunfo });
+  }
 
  clearState = () => {
    const initialState = {
@@ -96,13 +117,32 @@ class App extends React.Component {
    this.setState({ ...initialState });
  };
 
- // verificar bug clearStatehasTrunfo && deleteMycards
  clearStateHasTrunfo = (valueCard) => {
    this.setState((previousState) => (
      { hasTrunfo: valueCard === 'true' ? false : previousState.hasTrunfo }));
  };
 
- // verifica os inputs para ativar o botao salvar.
+ filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
+   const { saveNewCards, /* cardsFilterName, */ valueCardName,
+     /*  cardsFilterRare, cardsFilterTrunfo */ } = this.state;
+   if (valueCardName) {
+     return saveNewCards
+       .filter((cardSaved) => cardSaved.cardName.includes(valueCardName));
+   }
+
+   /* if (cardsFilterName.length) {
+     return saveNewCards.filter((card) => (card.cardName
+       .includes(cardsFilterName)));
+   }
+   if (cardsFilterRare !== 'todas') {
+     console.log('cardsFilterRare', cardsFilterRare.cardRare);
+     return saveNewCards.filter((card) => (card.cardRare === cardsFilterRare.cardRare));
+   }
+   console.log('saveCards depois do ifs dentro do filtered', saveNewCards);
+   if (cardsFilterTrunfo) return saveNewCards.filter((card) => (card.cardTrunfo)); */
+   return saveNewCards;
+ }
+
  verifyInput() {
    const {
      cardName,
@@ -133,47 +173,22 @@ class App extends React.Component {
    }
  }
 
- // deleta as cartas salvas
+ // deleta as cartas salvas  /** Source https://stackoverflow.com/questions/60990058/delete-a-div-onclick-in-react */
  deleteMyCards({ target }) {
    const { id, value } = target;
-
-   console.log('esse è o meu id', id);
-   console.log('esse è o meu value', value);
-   console.log('deleteMyCards foi ativado');
    const { saveNewCards } = this.state;
-   console.log('sou o saveNewCards', saveNewCards);
-
    const myRemaingCards = saveNewCards.filter((card) => card.cardName !== id);
-   console.log('minhas cartas remanescentes', myRemaingCards);
-   //  let { hasTrunfo } = this.state;
-   // valor true significa que è trunfo
-   /* if (value === true) {
-     hasTrunfo = false;
-   } else {
-     hasTrunfo = true;
-   } */
    this.setState({
      saveNewCards: [...myRemaingCards],
    }, () => this.clearStateHasTrunfo(value));
  }
 
- /** Source https://stackoverflow.com/questions/60990058/delete-a-div-onclick-in-react */
  render() {
    const {
-     cardName,
-     cardDescription,
-     cardAttr1,
-     cardAttr2,
-     cardAttr3,
-     cardImage,
-     cardRare,
-     cardTrunfo,
-     hasTrunfo,
-     saveNewCards,
-     buttonDelete,
-     isSaveButtonDisabled,
-   } = this.state;
-   console.log('sou o hastrunfo dentro do render', hasTrunfo);
+     cardName, cardDescription, cardTrunfo, cardRare, cardImage, cardAttr1,
+     cardAttr2, cardAttr3, buttonDelete,
+     isSaveButtonDisabled } = this.state;
+
    return (
      <div className="container-total">
        <h1>Spirito diVino</h1>
@@ -182,15 +197,7 @@ class App extends React.Component {
            onInputChange={ this.handleChange }
            onSaveButtonClick={ this.handleChangeOnClick }
            isSaveButtonDisabled={ isSaveButtonDisabled }
-           cardName={ cardName }
-           cardDescription={ cardDescription }
-           cardAttr1={ cardAttr1 }
-           cardAttr2={ cardAttr2 }
-           cardAttr3={ cardAttr3 }
-           cardImage={ cardImage }
-           cardRare={ cardRare }
-           cardTrunfo={ cardTrunfo }
-           hasTrunfo={ hasTrunfo }
+           { ...this.state }
          />
 
          <div className="card">
@@ -207,31 +214,29 @@ class App extends React.Component {
            />
          </div>
        </div>
-       <h3 className=".minhas-cartastitle"> Minhas Cartas</h3>
-       <div className="render-newcards" id="divToErase">
-         {
-           saveNewCards.map((card, index) => (
-             <div key={ index } className="new-card">
-               <Card
-                 cardName={ card.cardName }
-                 cardDescription={ card.cardDescription }
-                 cardAttr1={ card.cardAttr1 }
-                 cardAttr2={ card.cardAttr2 }
-                 cardAttr3={ card.cardAttr3 }
-                 cardImage={ card.cardImage }
-                 cardRare={ card.cardRare }
-                 cardTrunfo={ card.cardTrunfo }
-                 buttonDelete={ buttonDelete }
-                 deleteMyCards={ this.deleteMyCards }
-               />
-             </div>
-           ))
-         }
+       <div>
+         <h3> Minhas Adega</h3>
+         <div>
+           <p className="filtro">Filtro de busca</p>
 
+           <Filters
+             onInputFilterName={ this.onInputFilterName }
+           />
+         </div>
+       </div>
+       <div className="render-newcards" id="divToErase">
+         { this.filteredRender().map((card, index) => (
+           <div key={ index } className="new-card">
+             <Card
+               { ...card }
+               buttonDelete={ buttonDelete }
+               deleteMyCards={ this.deleteMyCards }
+             />
+           </div>
+         ))}
        </div>
      </div>
    );
  }
 }
-
 export default App;
