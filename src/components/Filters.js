@@ -6,6 +6,8 @@ export default class Filters extends React.Component {
     const {
       onInputFilterName,
       valueCardName,
+      valueCardRare,
+      valueCardTrunfo,
     } = this.props;
 
     return (
@@ -25,6 +27,7 @@ export default class Filters extends React.Component {
           <select
             name="cardRareFilter"
             data-testid="rare-filter"
+            value={ valueCardRare }
             onChange={ onInputFilterName }
 
           >
@@ -41,6 +44,7 @@ export default class Filters extends React.Component {
             type="checkbox"
             data-testid="trunfo-filter"
             checked="false"
+            value={ valueCardTrunfo }
             onChange={ onInputFilterName }
           />
         </label>
@@ -49,8 +53,10 @@ export default class Filters extends React.Component {
   }
 }
 
-const { func, string } = PropTypes;
+const { func, string, bool } = PropTypes;
 Filters.propTypes = {
   onInputFilterName: func.isRequired,
   valueCardName: string.isRequired,
+  valueCardRare: string.isRequired,
+  valueCardTrunfo: bool.isRequired,
 };

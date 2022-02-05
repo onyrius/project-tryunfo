@@ -26,6 +26,8 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       isFiltered: false,
       valueCardName: '',
+      valueCardRare: '',
+      valueCardTrunfo: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -85,18 +87,24 @@ class App extends React.Component {
   onInputFilterName({ target }) {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     let { cardsFilterName,
-      cardsFilterRare, cardsFilterTrunfo, valueCardName } = this.state;
+      cardsFilterRare, cardsFilterTrunfo,
+      valueCardName, valueCardRare, valueCardTrunfo } = this.state;
     const { saveNewCards } = this.state;
     valueCardName = value;
+    valueCardRare = value;
+    valueCardTrunfo = value;
+    console.log('alueCardRare', valueCardRare);
     cardsFilterName = saveNewCards
       .filter((cardFiltered) => cardFiltered.cardName === valueCardName);
     cardsFilterRare = saveNewCards
-      .filter((cardFiltered) => cardFiltered.cardRare === value);
+      .filter((cardFiltered) => cardFiltered.cardRare === valueCardRare);
     cardsFilterTrunfo = saveNewCards
       .filter((cardFiltered) => cardFiltered.cardTrunfo === true
       && target.type === 'checkbox');
     this.setState({
+      valueCardTrunfo,
       valueCardName,
+      valueCardRare,
       cardsFilterName,
       cardsFilterRare,
       cardsFilterTrunfo });
@@ -123,23 +131,25 @@ class App extends React.Component {
  };
 
  filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
-   const { saveNewCards, /* cardsFilterName, */ valueCardName,
-     /*  cardsFilterRare, cardsFilterTrunfo */ } = this.state;
-   if (valueCardName) {
-     return saveNewCards
-       .filter((cardSaved) => cardSaved.cardName.includes(valueCardName));
+   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare,
+     cardsFilterName, cardsFilterRare, cardsFilterTrunfo } = this.state;
+
+   if (valueCardName !== '' && valueCardRare !== 'todas') {
+     return cardsFilterName && cardsFilterRare;
+   }
+   if (valueCardRare === 'todas') {
+     return saveNewCards;
+   }
+   if (valueCardName !== '') {
+     return cardsFilterName;
+   }
+   if (valueCardRare !== 'todas') {
+     return cardsFilterRare;
    }
 
-   /* if (cardsFilterName.length) {
-     return saveNewCards.filter((card) => (card.cardName
-       .includes(cardsFilterName)));
+   if (valueCardTrunfo) {
+     return cardsFilterTrunfo;
    }
-   if (cardsFilterRare !== 'todas') {
-     console.log('cardsFilterRare', cardsFilterRare.cardRare);
-     return saveNewCards.filter((card) => (card.cardRare === cardsFilterRare.cardRare));
-   }
-   console.log('saveCards depois do ifs dentro do filtered', saveNewCards);
-   if (cardsFilterTrunfo) return saveNewCards.filter((card) => (card.cardTrunfo)); */
    return saveNewCards;
  }
 
