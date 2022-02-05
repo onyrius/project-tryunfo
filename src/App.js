@@ -10,9 +10,6 @@ class App extends React.Component {
     super();
     this.state = {
       saveNewCards: [],
-      cardsFilterName: [],
-      cardsFilterRare: [],
-      cardsFilterTrunfo: [],
       cardName: '',
       cardDescription: '',
       cardImage: '',
@@ -36,7 +33,7 @@ class App extends React.Component {
     this.clearState = this.clearState.bind(this);
     this.deleteMyCards = this.deleteMyCards.bind(this);
     this.clearStateHasTrunfo = this.clearStateHasTrunfo.bind(this);
-    this.onInputFilterName = this.onInputFilterName.bind(this);
+    this.onInputFilter = this.onInputFilter.bind(this);
     this.filteredRender = this.filteredRender.bind(this);
   }
 
@@ -76,30 +73,17 @@ class App extends React.Component {
     () => { this.clearState(); });
   } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
 
-  onInputFilterName({ target }) {
+  onInputFilter({ target }) {
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    let { cardsFilterName,
-      cardsFilterRare, cardsFilterTrunfo,
-      valueCardName, valueCardRare, valueCardTrunfo } = this.state;
-    const { saveNewCards } = this.state;
+    let { valueCardName, valueCardRare, valueCardTrunfo } = this.state;
     valueCardName = value;
     valueCardRare = value;
     valueCardTrunfo = value;
-    console.log('saveNewCards', saveNewCards);
-    cardsFilterName = saveNewCards
-      .filter((cardFiltered) => cardFiltered.cardName === valueCardName);
-    cardsFilterRare = saveNewCards
-      .filter((cardFiltered) => cardFiltered.cardRare === valueCardRare);
-    cardsFilterTrunfo = saveNewCards
-      .filter((cardFiltered) => cardFiltered.cardTrunfo === true
-      && target.type === 'checkbox');
     this.setState({
       valueCardTrunfo,
       valueCardName,
       valueCardRare,
-      cardsFilterName,
-      cardsFilterRare,
-      cardsFilterTrunfo });
+    });
   }
 
  clearState = () => {
@@ -123,19 +107,10 @@ class App extends React.Component {
  };
 
  filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
-   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare,
-     cardsFilterName, cardsFilterRare, cardsFilterTrunfo } = this.state;
+   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare } = this.state;
 
    if (valueCardName !== '' && valueCardRare !== 'todas') {
-     return cardsFilterName && cardsFilterRare;
-   } if (valueCardName.length !== 0) {
-     return cardsFilterName;
-   /* } if (valueCardRare !== 'todas') {
-     return cardsFilterRare;
-   } if (valueCardRare === 'todas') {
-     return saveNewCards; */
-   } if (valueCardTrunfo) {
-     return cardsFilterTrunfo;
+     return saveNewCards.filter((card) => card.cardName.includes(valueCardName));
    } return saveNewCards;
  }
 
@@ -210,7 +185,7 @@ class App extends React.Component {
            <p className="filtro">Filtro de busca</p>
 
            <Filters
-             onInputFilterName={ this.onInputFilterName }
+             onInputFilter={ this.onInputFilter }
            />
          </div>
        </div>

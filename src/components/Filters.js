@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default class Filters extends React.Component {
   render() {
     const {
-      onInputFilterName,
+      onInputFilter,
       valueCardName,
       valueCardRare,
       valueCardTrunfo,
@@ -19,7 +19,7 @@ export default class Filters extends React.Component {
             type="text"
             name="filterName"
             value={ valueCardName }
-            onChange={ onInputFilterName }
+            onChange={ onInputFilter }
           />
         </label>
         <label htmlFor="cardRareFilter" className="filtro">
@@ -28,7 +28,7 @@ export default class Filters extends React.Component {
             name="cardRareFilter"
             data-testid="rare-filter"
             value={ valueCardRare }
-            onChange={ onInputFilterName }
+            onChange={ onInputFilter }
 
           >
             <option value="todas">todas</option>
@@ -45,7 +45,7 @@ export default class Filters extends React.Component {
             data-testid="trunfo-filter"
             checked={ valueCardTrunfo }
             value={ valueCardTrunfo }
-            onChange={ onInputFilterName }
+            onChange={ onInputFilter }
           />
         </label>
       </>
@@ -55,7 +55,7 @@ export default class Filters extends React.Component {
 
 const { func, string, bool } = PropTypes;
 Filters.propTypes = {
-  onInputFilterName: func.isRequired,
+  onInputFilter: func.isRequired,
   valueCardName: string.isRequired,
   valueCardRare: string.isRequired,
   valueCardTrunfo: bool.isRequired,
