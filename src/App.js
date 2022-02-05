@@ -106,7 +106,8 @@ class App extends React.Component {
  };
 
  filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
-   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare } = this.state;
+   const { saveNewCards, valueCardName,
+   /* valueCardTrunfo, */ valueCardRare } = this.state;
 
    if (valueCardName !== '' && valueCardRare !== 'todas') {
      return saveNewCards.filter((card) => ((card.cardName.includes(valueCardName)
