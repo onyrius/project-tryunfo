@@ -68,11 +68,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
     };
     let { hasTrunfo } = this.state;
-    if (cardTrunfo) {
-      hasTrunfo = true;
-    } else {
-      hasTrunfo = false;
-    }
+    if (cardTrunfo) hasTrunfo = true;
 
     let { buttonDelete } = this.state;
     if (event) buttonDelete = true;
@@ -155,13 +151,7 @@ class App extends React.Component {
 
  verifyInput() {
    const {
-     cardName,
-     cardDescription,
-     cardAttr1,
-     cardAttr2,
-     cardAttr3,
-     cardImage,
-     cardRare,
+     cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage, cardRare,
    } = this.state;
    const somaAllAttr = 210;
    const maxEachAttr = 90;
