@@ -51,10 +51,7 @@ class App extends React.Component {
   handleChangeOnClick(event) {
     event.preventDefault();
     const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-      cardRare,
-      cardTrunfo,
-      isSaveButtonDisabled,
-
+      cardRare, cardTrunfo, isSaveButtonDisabled,
     } = this.state;
     const newCard = {
       cardName,
@@ -72,12 +69,11 @@ class App extends React.Component {
 
     let { buttonDelete } = this.state;
     if (event) buttonDelete = true;
-    this.setState((prevState) => ({
-      buttonDelete,
+    this.setState((prevState) => ({ buttonDelete,
       hasTrunfo,
-      saveNewCards: [...prevState.saveNewCards, newCard] }), () => {
-      this.clearState();
-    });
+      saveNewCards: [...prevState.saveNewCards, newCard],
+    }),
+    () => { this.clearState(); });
   } // o prevState mantem o saveNewCards e pode add novas informaçoes ao array. e o clearState è chamado sincronamente
 
   onInputFilterName({ target }) {
@@ -89,7 +85,7 @@ class App extends React.Component {
     valueCardName = value;
     valueCardRare = value;
     valueCardTrunfo = value;
-    console.log('alueCardRare', valueCardRare);
+    console.log('saveNewCards', saveNewCards);
     cardsFilterName = saveNewCards
       .filter((cardFiltered) => cardFiltered.cardName === valueCardName);
     cardsFilterRare = saveNewCards
@@ -132,21 +128,15 @@ class App extends React.Component {
 
    if (valueCardName !== '' && valueCardRare !== 'todas') {
      return cardsFilterName && cardsFilterRare;
-   }
-   if (valueCardRare === 'todas') {
-     return saveNewCards;
-   }
-   if (valueCardName !== '') {
+   } if (valueCardName.length !== 0) {
      return cardsFilterName;
-   }
-   if (valueCardRare !== 'todas') {
+   /* } if (valueCardRare !== 'todas') {
      return cardsFilterRare;
-   }
-
-   if (valueCardTrunfo) {
+   } if (valueCardRare === 'todas') {
+     return saveNewCards; */
+   } if (valueCardTrunfo) {
      return cardsFilterTrunfo;
-   }
-   return saveNewCards;
+   } return saveNewCards;
  }
 
  verifyInput() {
