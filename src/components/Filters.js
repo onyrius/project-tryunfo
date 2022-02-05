@@ -37,10 +37,10 @@ export default class Filters extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="cardTrunfo" className="filtro">
+        <label htmlFor="trunfo-filter" className="filtro">
           Super Trunfo
           <input
-            name="cardTrunfo"
+            name="trunfoFilter"
             type="checkbox"
             data-testid="trunfo-filter"
             checked={ valueCardTrunfo }

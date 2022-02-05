@@ -21,9 +21,9 @@ class App extends React.Component {
       hasTrunfo: false,
       buttonDelete: false,
       isSaveButtonDisabled: true,
-      valueCardName: '',
-      valueCardRare: '',
       valueCardTrunfo: false,
+      valueCardName: '',
+      valueCardRare: 'todas',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -74,14 +74,18 @@ class App extends React.Component {
 
   onInputFilter({ target }) {
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    let { valueCardName, valueCardRare, valueCardTrunfo } = this.state;
-    valueCardName = value;
-    valueCardRare = value;
-    valueCardTrunfo = value;
+    const { name } = target;
+    /*  console.log('name', name);
+    console.log('value', value); */
+    let { valueCardTrunfo, valueCardName, valueCardRare } = this.state;
+    if (name === 'filterName') valueCardName = value;
+    if (name === 'cardRareFilter') valueCardRare = value;
+    if (name === 'trunfoFilter') valueCardTrunfo = value;
     this.setState({
-      valueCardTrunfo,
+      [name]: value,
       valueCardName,
       valueCardRare,
+      valueCardTrunfo,
     });
   }
 
@@ -106,23 +110,25 @@ class App extends React.Component {
  };
 
  filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
-   const { saveNewCards, valueCardName,
-   /* valueCardTrunfo, */ valueCardRare } = this.state;
+   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare } = this.state;
+   /* console.log('saveNewCards', saveNewCards);
+   console.log('valueCardName', valueCardName);
+   console.log('valueCardTrunfo', valueCardTrunfo);
+   console.log('valueCardRare', valueCardRare); */
 
-   if (valueCardName !== '' && valueCardRare !== 'todas') {
-     return saveNewCards.filter((card) => ((card.cardName.includes(valueCardName)
-     /* && card.cardRare === valueCardRare */)));
+   if ((valueCardName !== '') && (valueCardRare !== 'todas')) {
+     return saveNewCards.filter((card) => card.cardName.includes(valueCardName)
+     && card.cardRare === valueCardRare);
    }
-   /*  if (valueCardName !== '') {
-     return saveNewCards.filter((card) => ((card.cardName.includes(valueCardName))));
+   if (valueCardName !== '') {
+     return saveNewCards.filter((card) => (card.cardName.includes(valueCardName)));
    }
    if (valueCardRare !== 'todas') {
      return saveNewCards.filter((card) => (card.cardRare === valueCardRare));
    }
    if (valueCardTrunfo) {
      return saveNewCards.filter((card) => card.cardTrunfo === valueCardTrunfo);
-   } */
-
+   }
    return saveNewCards;
  }
 
@@ -192,7 +198,7 @@ class App extends React.Component {
          </div>
        </div>
        <div>
-         <h3> Minhas Adega</h3>
+         <h3> Minha Adega</h3>
          <div>
            <p className="filtro">Filtro de busca</p>
 
