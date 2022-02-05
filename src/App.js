@@ -21,7 +21,6 @@ class App extends React.Component {
       hasTrunfo: false,
       buttonDelete: false,
       isSaveButtonDisabled: true,
-      isFiltered: false,
       valueCardName: '',
       valueCardRare: '',
       valueCardTrunfo: false,
@@ -107,19 +106,22 @@ class App extends React.Component {
  };
 
  filteredRender() { // referencia Thiago Nobrega: https://github.com/tryber/sd-018-b-project-tryunfo/pull/34/files
-   const { saveNewCards, valueCardName, /* valueCardTrunfo */valueCardRare } = this.state;
+   const { saveNewCards, valueCardName, valueCardTrunfo, valueCardRare } = this.state;
 
    if (valueCardName !== '' && valueCardRare !== 'todas') {
-     return saveNewCards.filter((card) => card.cardName.includes(valueCardName));
+     return saveNewCards.filter((card) => ((card.cardName.includes(valueCardName)
+     /* && card.cardRare === valueCardRare */)));
    }
-   /*  if (valueCardTrunfo) {
-     return saveNewCards.filter((card) => card.cardTrunfo === valueCardTrunfo);
+   /*  if (valueCardName !== '') {
+     return saveNewCards.filter((card) => ((card.cardName.includes(valueCardName))));
    }
-
    if (valueCardRare !== 'todas') {
-     return saveNewCards.filter((card) => card.cardRare === valueCardRare);
+     return saveNewCards.filter((card) => (card.cardRare === valueCardRare));
    }
-    */
+   if (valueCardTrunfo) {
+     return saveNewCards.filter((card) => card.cardTrunfo === valueCardTrunfo);
+   } */
+
    return saveNewCards;
  }
 
