@@ -58,13 +58,15 @@ Na renderização das cartas, a aplicação possui três filtros de listagem de 
 
 ---
 
-### Gif do Projeto finalizado
+### Status do Projeto 
 
 <img src="tryunfo-project-status.png" alt="tryunfo-project-status.png"/>
 
 --- 
 
-### Status do Projeto 
+### Gif do Projeto finalizado
+
+:construction: :construction: :construction:
 
 <img src="" alt=""/>
 
