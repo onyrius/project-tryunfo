@@ -17,11 +17,9 @@ Neste projeto, verificamos se voce é capaz de:
 
 ---
 
-# Entregáveis
+## O que foi desenvolvido
 
-## O que deverá ser desenvolvido
-
-Neste projeto você vai desenvolver um jogo no estilo Super Trunfo! Ao utilizar essa aplicação uma pessoa usuária deverá ser capaz de:
+Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa aplicação uma pessoa usuária deverá ser capaz de:
 
   * Criar um baralho, com o tema livre;
 
@@ -31,18 +29,14 @@ Neste projeto você vai desenvolver um jogo no estilo Super Trunfo! Ao utilizar 
 
   * Jogar com o baralho criado.
 
-Para entregar o seu projeto você deverá criar um Pull Request neste repositório.
 
-Lembre-se que você pode consultar nosso conteúdo sobre Git & GitHub no Course sempre que precisar
 
 
 ## Desenvolvimento
 
-Você deve desenvolver uma aplicação em React com manipulação de estados em classes. Essa aplicação simulará um jogo de **Super Trunfo**, desde a criação das cartas do seu baralho até a funcionalidade de jogar.
+Foi desenvolvida uma aplicação em React com manipulação de estados em classes. Essa aplicação simula um jogo de **Super Trunfo**.
 
-Na renderização das cartas, sua aplicação deverá possuir três filtros de listagem de cartas: filtro por **nome**, por **raridade** e por **Super Trunfo**. Os filtros **nome** e **raridade** são acumulativos. O filtro **Super Trunfo** funciona de forma independente.
-
-O tema do seu baralho é **livre**, então explore a sua criatividade! Mas use seu bom senso para a criação do seu baralho. Lembre-se das normas de conduta e ética no Manual de Estudante.
+Na renderização das cartas, a aplicação possui três filtros de listagem de cartas: filtro por **nome**, por **raridade** e por **Super Trunfo**. Os filtros **nome** e **raridade** são acumulativos. O filtro **Super Trunfo** funciona de forma independente.
 
 
 # Observações técnicas
