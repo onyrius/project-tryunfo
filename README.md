@@ -60,7 +60,7 @@ Na renderização das cartas, a aplicação possui três filtros de listagem de 
 
 ### Gif do Projeto finalizado
 
-<img src="" alt=""/>
+<img src="tryunfo-project-status.png" alt="tryunfo-project-status.png"/>
 
 --- 
 
