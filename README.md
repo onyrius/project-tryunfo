@@ -66,7 +66,7 @@ Na renderização das cartas, a aplicação possui três filtros de listagem de 
 
 ### Gif do Projeto finalizado
 
-:construction: :construction: :construction:
+:construction: WOMAN AT WORK :construction:
 
 <img src="" alt=""/>
 
