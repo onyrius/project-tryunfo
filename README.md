@@ -1,7 +1,18 @@
 
+# Projeto Tryunfo
 
-# Habilidades desenvolvidas 
-Neste projeto, verificamos se voce é capaz de:
+Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa aplicação uma pessoa usuária é ser capaz de:
+
+  * Criar um baralho, com o tema livre;
+
+  * Adicionar e remover uma carta do baralho;
+
+  * Visualizar todas as cartas que foram adicionadas ao baralho;
+
+  
+
+## Habilidades desenvolvidas 
+
 
   * Ler o estado de um componente e usá-lo para alterar o que exibimos no browser
 
@@ -16,18 +27,6 @@ Neste projeto, verificamos se voce é capaz de:
   * Transmitir informações de componentes filhos para componentes pais via callbacks
 
 ---
-
-## O que foi desenvolvido
-
-Neste projeto foi desenvolvido um jogo no estilo Super Trunfo! Ao utilizar essa aplicação uma pessoa usuária deverá ser capaz de:
-
-  * Criar um baralho, com o tema livre;
-
-  * Adicionar e remover uma carta do baralho;
-
-  * Visualizar todas as cartas que foram adicionadas ao baralho;
-
-  * Jogar com o baralho criado.
 
 
 
